@@ -1,0 +1,14 @@
+{
+  "name": "doug-jenkins-for-president-2028",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Static website for Doug Jenkins for President 2028 (dougjenkinsforpresident.com).",
+  "type": "module",
+  "scripts": {
+    "build": "node src/build.mjs",
+    "images": "node src/build.mjs && node scripts/render-images.mjs && node src/build.mjs",
+    "serve": "node scripts/serve.mjs",
+    "check": "node scripts/check.mjs"
+  },
+  "engines": { "node": ">=18" }
+}
