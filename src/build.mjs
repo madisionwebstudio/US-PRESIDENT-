@@ -112,7 +112,7 @@ function footer() {
     <div class="footer-grid">
       <div class="footer-brand">
         ${logo('logo-light')}
-        <p class="footer-slogan">${esc(site.slogan)}.</p>
+        <p class="footer-slogan">${esc(site.slogan)}.<br>${esc(site.slogan2)}.</p>
       </div>
       <nav aria-label="Footer">
         <h2 class="footer-h">Campaign</h2>
@@ -217,6 +217,11 @@ ${header(path)}
 ${body}
 </main>
 ${footer()}
+<nav class="action-bar" aria-label="Quick actions">
+  <a href="#join">Join Us</a>
+  <a href="/contact/">Contact</a>
+  <a href="${contributeHref}">Contribute</a>
+</nav>
 </body>
 </html>
 `;
@@ -330,6 +335,7 @@ pages.push({
       <h1 class="hero-kicker">Doug Jenkins <span>${esc(site.status)} for President 2028</span></h1>
       <p class="hero-slogan">${esc(site.slogan)}.</p>
       ${swoosh('swoosh-hero')}
+      <p class="hero-slogan2">${esc(site.slogan2)}.</p>
       <div class="hero-join">
         <p class="hero-join-label"><strong>${esc(site.join.heading)}</strong> ${esc(site.join.text)}</p>
         ${signupForm('hero-email')}

@@ -43,7 +43,9 @@ The home page keeps every section of the original, in the original order:
 
 **Changed**
 
-* **Campaign Moments:** the original gallery showed only an empty placeholder ("1/5"), and its photos could not be recovered. The slider currently shows the two genuine images (the portrait and the flyer). Add more photos in `src/content.mjs` (`moments`).
+* **Campaign Moments:** the five original gallery photos were recovered from the site's image host and are now in the slider. They show two photos of the campaign vehicle and three pages of printed campaign literature. The originals are in `archive/original-site/`.
+* **Mobile:** a sticky bar at the bottom of the screen with Join Us, Contact and Contribute buttons. It is hidden on desktop and while the menu is open.
+* **New slogan:** "Let's Do the Right Thing" appears in the hero and the footer. It is taken from the campaign literature and vehicle in the Campaign Moments photos.
 * **Contribute:** the original button linked to `#`, and no payment processor exists. Until `contributeUrl` is set in `src/content.mjs`, the button opens an email to the campaign, and the section shows the campaign's email and phone. Once a URL is set, the button links there and shows the original "Secure payment options" line.
 * **Removed:** the cookie banner (the new site sets no cookies) and file attachments on the contact form.
 
@@ -87,11 +89,25 @@ The home page keeps every section of the original, in the original order:
 4. **Status and hours:** confirm "Independent Write-In" status for 2028, and the days and time zone for the hours.
 5. **Disclaimer:** confirm the committee name "Friends of Doug Jenkins", and whether an authorization statement is required.
 
+### Printed literature differs from the website (please confirm which is current)
+
+The campaign literature in the Campaign Moments photos differs from the website text in several places. The site keeps the **website** wording until the campaign confirms.
+
+| Topic | Website | Printed literature |
+|---|---|---|
+| Climate | "6 million people die annually from contaminated water" | "5 million" |
+| Stop the Killing | no mention of gun powder | adds "Stop making gun powder" |
+| Immigration | process immigrants in their home countries; prioritize much-needed workers; partner with Mexico; no NIMBY | "Finish securing our southern border. Pull our 35,000 troops out of South Korea. Take most troops out of Germany and the Middle East as well. Use the troops to help on our southern borders. We need to get organization down there." |
+| Addictions | "…negative effects on family and communities, with treatment options" | "…& Individualism Addictions… negative effects on family and friends. Ruins a lot of families." |
+| Homelessness | "a family agent" | "a family service agent" |
+
+The vehicle also advertises "Jobs & coupons available in Washington DC, text 608-630-6648" and "Yard signs or hoodies $44 each". Neither has been added to the site without the campaign's explanation and approval.
+
 ## 5. Configuration needed
 
 * **Hosting and domain:** deploy `public/` and repoint DNS. This needs the campaign's authorization.
-* **Contributions:** set up an FEC-compliant processor (for example ActBlue, WinRed or Anedot), then paste its URL into `contributeUrl`. Federal law requires contribution disclaimers and donor information collection.
-* **Campaign Moments photos:** send the 5 photos from the original gallery, or new event photos.
+* **Contributions: unknown how the campaign currently accepts them.** Ask Doug how he receives contributions today (check, cash, a payment app, or an online processor). If he already uses an online page, paste its URL into `contributeUrl`. If not, set up an FEC-compliant processor (for example ActBlue, WinRed or Anedot), then paste its URL into `contributeUrl`. Federal law requires contribution disclaimers and donor information collection.
+* **Campaign Moments photos:** add new event photos in `src/content.mjs` as they become available.
 * **Forms:** they currently open the visitor's email app. Connect a form or email-list service using `data-endpoint` (see README).
 * **Photos:** the only genuine photo is the small portrait on the flyer. A professional photo shoot is the top priority.
 * **Social links:** none are verified. Add official handles when available.

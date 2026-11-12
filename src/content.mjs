@@ -9,6 +9,7 @@ export const site = {
   shortName: 'Doug Jenkins 2028',
   url: 'https://dougjenkinsforpresident.com',
   slogan: 'End the Nonsense', // [flyer]
+  slogan2: 'Let’s Do the Right Thing', // [campaign literature + vehicle, Campaign Moments photos]
   status: 'Independent Write-In', // [flyer]
   hometown: 'Madison, Wisconsin', // client brief
   email: 'dougjenkins.1890@gmail.com', // [site] [flyer]
@@ -36,12 +37,20 @@ export const bio = [
   'He ran his own successful painting business for almost 40 years.',
 ];
 
-// "Campaign Moments" [site] — the original gallery's photos could not be recovered
-// (it showed an empty placeholder). Add campaign photos here: put the files in
-// src/assets/img/ (a .jpg and a .webp with the same name) and add an entry.
+// "Campaign Moments" [site] — the five photos from the original gallery
+// (recovered from the site's image host; originals in archive/original-site/).
+// To add photos: put a .jpg and a .webp with the same name in src/assets/img/ and add an entry.
 export const moments = [
-  { img: 'doug-jenkins-portrait', w: 386, h: 386, alt: 'Doug Jenkins wearing his veterans cap and glasses', caption: 'Doug Jenkins' },
-  { img: 'campaign-flyer-800', w: 800, h: 1067, alt: 'Doug Jenkins 2028 campaign flyer: Independent Write In, For President 2028, End the Nonsense', caption: 'Campaign flyer, 2028' },
+  { img: 'moment-campaign-jeep-rear', w: 1100, h: 825, caption: 'On the road',
+    alt: 'Doug Jenkins campaign vehicle from behind, lettered "Doug Jenkins for President 2028, Independent Write In, End the Nonsense, Let\'s Do the Right Thing", with a trailer sign and American flags' },
+  { img: 'moment-campaign-jeep-side', w: 1100, h: 825, caption: 'The campaign vehicle',
+    alt: 'Side view of the red Doug Jenkins for President 2028 campaign vehicle with campaign signs on the doors and windows' },
+  { img: 'moment-literature-economy-climate-peace', w: 825, h: 1100, caption: 'Campaign literature: Economy, Climate Change, Stop the Killing',
+    alt: 'Printed campaign literature setting out Doug\'s positions on the Economy, Climate Change and Stop the Killing' },
+  { img: 'moment-literature-homelessness-hunger-budget', w: 825, h: 1100, caption: 'Campaign literature: Homelessness, Hunger, Federal Budget',
+    alt: 'Printed campaign literature setting out Doug\'s positions on Eradicate Homelessness, Feed the Starving and Help the Sick, and Federal Budget Reform' },
+  { img: 'moment-literature-health-justice-immigration', w: 825, h: 1100, caption: 'Campaign literature: Health Care, Justice, Immigration, Addictions',
+    alt: 'Printed campaign literature setting out Doug\'s positions on Medical, Dental and Car Care, Prison and Criminal Justice Reform, Immigration and Addictions, ending "End the Nonsense, Let\'s Do the Right Thing"' },
 ];
 
 // "Our Vision" [site] — headings and text as published, in the original order.

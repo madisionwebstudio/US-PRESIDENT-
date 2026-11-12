@@ -283,3 +283,18 @@ body.nav-open { overflow: hidden; }
 .contact-sub { margin-top: 28px; }
 @media (min-width: 1100px) { .slides:has(> .slide:nth-child(2):last-child) .slide { flex-basis: calc(50% - 8px); } }
 .slider-nav[hidden] { display: none; }
+
+.hero-slogan2 { margin: -14px 0 28px; font-size: clamp(1.2rem, 1rem + 1vw, 1.7rem); font-weight: 800; font-stretch: 110%; text-transform: uppercase; color: #dfe6f8; letter-spacing: 0.02em; }
+
+/* Mobile sticky action bar */
+.action-bar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 90; display: grid; grid-template-columns: repeat(3, 1fr); background: var(--white); box-shadow: 0 -6px 20px rgba(12, 26, 68, 0.18); padding-bottom: env(safe-area-inset-bottom); }
+.action-bar a { display: flex; align-items: center; justify-content: center; min-height: 56px; font-weight: 850; font-stretch: 108%; font-size: 0.9rem; letter-spacing: 0.05em; text-transform: uppercase; text-decoration: none; }
+.action-bar a:nth-child(1) { background: var(--red); color: var(--white); }
+.action-bar a:nth-child(2) { background: var(--white); color: var(--blue); }
+.action-bar a:nth-child(3) { background: var(--blue); color: var(--white); }
+.action-bar a:focus-visible { outline-offset: -4px; outline-color: var(--ink); }
+body { padding-bottom: calc(56px + env(safe-area-inset-bottom)); }
+body.nav-open .action-bar { display: none; }
+@media (min-width: 960px) { .action-bar { display: none; } body { padding-bottom: 0; } }
+.slide figcaption { flex: 1; }
+@media (max-width: 719px) { .slide picture { height: 320px; padding: 12px; } }
