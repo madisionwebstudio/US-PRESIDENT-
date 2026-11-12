@@ -93,7 +93,7 @@ for (const w of widths) {
       const de = document.documentElement;
       const wide = [...document.querySelectorAll('body *')].filter((el) => {
         const b = el.getBoundingClientRect();
-        return b.right > de.clientWidth + 1 && getComputedStyle(el).position !== 'fixed' && !el.closest('[aria-hidden="true"],.menu');
+        return b.right > de.clientWidth + 1 && getComputedStyle(el).position !== 'fixed' && !el.closest('[aria-hidden="true"],.menu,.slides');
       }).map((el) => el.className || el.tagName).slice(0, 3);
       const broken = [...document.images].filter((i) => i.complete && i.naturalWidth === 0).map((i) => i.currentSrc || i.src);
       return { overflow: de.scrollWidth > de.clientWidth, wide, broken };

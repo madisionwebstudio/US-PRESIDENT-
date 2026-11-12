@@ -249,3 +249,37 @@ body.nav-open { overflow: hidden; }
   .logo-sub { font-size: 0.66rem; }
   .hero-photo .photo { max-width: 300px; }
 }
+
+/* Header buttons */
+.nav-btns { display: flex; gap: 8px; }
+.menu-btns { display: grid; gap: 10px; }
+.icon-flip { transform: scaleX(-1); }
+.btn-lg { min-height: 60px; padding: 14px 40px; font-size: 1.1rem; }
+@media (min-width: 960px) and (max-width: 1119px) { .nav ul a { padding: 10px 8px; font-size: 0.88rem; } .nav { gap: 12px; } }
+
+/* Campaign Moments slider */
+.moments .h2 { margin-bottom: 32px; }
+.slides { display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; scrollbar-width: none; padding-bottom: 4px; }
+.slides::-webkit-scrollbar { display: none; }
+.slides:focus-visible { outline: 3px solid var(--red); outline-offset: 4px; }
+.slide { flex: 0 0 100%; scroll-snap-align: start; }
+@media (min-width: 720px) { .slide { flex-basis: calc(50% - 8px); } }
+@media (min-width: 1100px) { .slide { flex-basis: calc(33.333% - 11px); } }
+.slide figure { background: var(--gray); height: 100%; display: flex; flex-direction: column; }
+.slide picture { height: 420px; display: flex; align-items: center; justify-content: center; padding: 20px; }
+.slide img { max-height: 100%; width: auto; object-fit: contain; box-shadow: 0 10px 24px -12px rgba(12, 26, 68, 0.45); }
+.slide figcaption { padding: 14px 20px; border-top: 4px solid var(--blue); font-weight: 700; background: var(--white); }
+.slider-nav { display: flex; align-items: center; gap: 16px; margin-top: 20px; }
+.slider-btn { display: grid; place-items: center; width: 48px; height: 48px; border-radius: 50%; border: 2px solid var(--blue); background: var(--white); color: var(--blue); cursor: pointer; }
+.slider-btn:hover { background: var(--blue); color: var(--white); }
+.slider-btn:disabled { opacity: 0.35; cursor: default; background: var(--white); color: var(--blue); }
+.slider-count { font-weight: 800; min-width: 3ch; text-align: center; }
+
+/* Support the Campaign */
+.support { background: var(--gray); border-top: 6px solid var(--red); padding: clamp(48px, 7vw, 80px) 0; }
+.support-inner { display: grid; gap: 24px; align-items: center; }
+@media (min-width: 900px) { .support-inner { grid-template-columns: 1fr auto; gap: 56px; } }
+.support-text { margin-top: 12px; font-size: 1.2rem; max-width: 40em; }
+.contact-sub { margin-top: 28px; }
+@media (min-width: 1100px) { .slides:has(> .slide:nth-child(2):last-child) .slide { flex-basis: calc(50% - 8px); } }
+.slider-nav[hidden] { display: none; }

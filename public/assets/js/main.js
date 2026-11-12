@@ -88,3 +88,26 @@
 
   doc.classList.add('js-ready');
 })();
+
+// Campaign Moments slider (native scroll-snap + buttons)
+document.querySelectorAll('[data-slider]').forEach((slider) => {
+  const track = slider.querySelector('[data-slides]');
+  const slides = [...track.children];
+  const prev = slider.querySelector('[data-prev]');
+  const next = slider.querySelector('[data-next]');
+  const count = slider.querySelector('[data-count]');
+  const step = () => slides[0].getBoundingClientRect().width + 16;
+  const update = () => {
+    const i = Math.round(track.scrollLeft / step());
+    const perView = Math.max(1, Math.round(track.clientWidth / step()));
+    count.textContent = `${Math.min(i + 1, slides.length)}/${slides.length}`;
+    prev.disabled = track.scrollLeft <= 2;
+    next.disabled = track.scrollLeft + track.clientWidth >= track.scrollWidth - 2 || slides.length <= perView;
+    slider.querySelector('.slider-nav').hidden = track.scrollWidth <= track.clientWidth + 2;
+  };
+  prev.addEventListener('click', () => track.scrollBy({ left: -step(), behavior: 'smooth' }));
+  next.addEventListener('click', () => track.scrollBy({ left: step(), behavior: 'smooth' }));
+  track.addEventListener('scroll', () => requestAnimationFrame(update), { passive: true });
+  window.addEventListener('resize', update);
+  update();
+});

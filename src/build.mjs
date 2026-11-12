@@ -6,7 +6,7 @@ import { mkdir, writeFile, readFile, cp, rm } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { site, bio, policies, news } from './content.mjs';
+import { site, bio, policies, news, moments } from './content.mjs';
 import { icon } from './icons.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
@@ -21,6 +21,7 @@ const abs = (path) => site.url + path;
 const VISION = '/our-vision/';
 const policyUrl = (slug) => `${VISION}${slug}/`;
 const label = (p) => p.shortTitle || p.title;
+const contributeHref = site.contributeUrl || `mailto:${site.email}?subject=${encodeURIComponent('I would like to contribute to Doug Jenkins for President 2028')}`;
 
 const hashOf = async (p) => createHash('sha256').update(await readFile(p)).digest('hex').slice(0, 10);
 const v = {
@@ -54,7 +55,10 @@ function header(path) {
     ${logo()}
     <nav class="nav" aria-label="Main">
       <ul>${navItems.map((n) => `<li><a href="${n.href}"${cur(n.href)}>${n.label}</a></li>`).join('')}</ul>
-      <a class="btn btn-red btn-sm" href="#join">Join the Movement</a>
+      <div class="nav-btns">
+        <a class="btn btn-blue btn-sm" href="/#support">Contribute</a>
+        <a class="btn btn-red btn-sm" href="#join">Join the Movement</a>
+      </div>
     </nav>
     <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menu" data-nav-toggle>
       <span class="menu-open">${icon('menu')} Menu</span><span class="menu-close">${icon('close')} Close</span>
@@ -69,7 +73,10 @@ function header(path) {
       <ul class="menu-sub">
         ${policies.map((p) => `<li><a href="${policyUrl(p.slug)}"${cur(policyUrl(p.slug))}>${esc(label(p))}</a></li>`).join('')}
       </ul>
-      <a class="btn btn-red btn-block" href="#join">Join the Movement</a>
+      <div class="menu-btns">
+        <a class="btn btn-red btn-block" href="#join">Join the Movement</a>
+        <a class="btn btn-blue btn-block" href="/#support">Contribute</a>
+      </div>
     </nav>
   </div>
 </header>`;
@@ -112,6 +119,8 @@ function footer() {
         <ul>
           <li><a href="/">Home</a></li>
           ${navItems.map((n) => `<li><a href="${n.href}">${n.label}</a></li>`).join('')}
+          <li><a href="/#moments">Campaign Moments</a></li>
+          <li><a href="/#support">${esc(site.support.heading)}</a></li>
         </ul>
       </nav>
       <nav aria-label="Our Vision">
@@ -252,6 +261,58 @@ const renderBody = (blocks) => blocks.map((b) => (typeof b === 'string'
   ? `<p>${esc(b)}</p>`
   : `<ul class="checks">${b.list.map((x) => `<li>${esc(x)}</li>`).join('')}</ul>`)).join('\n');
 
+const contactForm = (k, title = '<h2 class="h3">Send a message</h2>') => `
+    <form class="form" data-mailto-form data-subject="Message from dougjenkinsforpresident.com" novalidate>
+      ${title}
+      <div class="field">
+        <label for="${k}-name">Name</label>
+        <input id="${k}-name" name="name" type="text" autocomplete="name">
+      </div>
+      <div class="field">
+        <label for="${k}-email">Email <span aria-hidden="true">*</span><span class="visually-hidden">(required)</span></label>
+        <input id="${k}-email" name="email" type="email" autocomplete="email" required aria-describedby="${k}-email-err">
+        <p class="field-error" id="${k}-email-err" hidden>Please enter a valid email address.</p>
+      </div>
+      <div class="field">
+        <label for="${k}-source">Where did you hear about us?</label>
+        <input id="${k}-source" name="source" type="text">
+      </div>
+      <div class="field">
+        <label for="${k}-message">Message <span aria-hidden="true">*</span><span class="visually-hidden">(required)</span></label>
+        <textarea id="${k}-message" name="message" rows="5" required aria-describedby="${k}-message-err"></textarea>
+        <p class="field-error" id="${k}-message-err" hidden>Please enter a message.</p>
+      </div>
+      <button class="btn btn-red" type="submit">Send</button>
+      <p class="form-status" role="status" aria-live="polite"></p>
+      <p class="form-help">This opens your email app with your message to ${site.email}.</p>
+    </form>
+`;
+
+const contactDetails = () => `
+      <dl class="contact">
+        <div><dt>Email</dt><dd><a href="mailto:${site.email}">${site.email}</a></dd></div>
+        <div><dt>Phone</dt><dd><a href="tel:${site.phoneHref}">${site.phone}</a></dd></div>
+        <div><dt>Hours</dt><dd>${site.hours}</dd></div>
+        <div><dt>Location</dt><dd>${site.hometown}</dd></div>
+      </dl>`;
+
+const momentsSlider = () => `
+  <div class="slider" data-slider>
+    <ul class="slides" data-slides tabindex="0" aria-label="Campaign photos">
+      ${moments.map((m, i) => `<li class="slide" aria-label="${i + 1} of ${moments.length}">
+        <figure>
+          <picture><source type="image/webp" srcset="/assets/img/${m.img}.webp"><img src="/assets/img/${m.img}.jpg" alt="${esc(m.alt)}" width="${m.w}" height="${m.h}" loading="lazy" decoding="async"></picture>
+          <figcaption>${esc(m.caption)}</figcaption>
+        </figure>
+      </li>`).join('')}
+    </ul>
+    <div class="slider-nav">
+      <button class="slider-btn" type="button" data-prev aria-label="Previous photo">${icon('arrow', 'icon icon-flip')}</button>
+      <span class="slider-count" data-count aria-live="polite">1/${moments.length}</span>
+      <button class="slider-btn" type="button" data-next aria-label="Next photo">${icon('arrow')}</button>
+    </div>
+  </div>`;
+
 const pages = [];
 
 // HOME ----------------------------------------------------------------------
@@ -307,6 +368,34 @@ pages.push({
   <div class="wrap">
     <p class="statement-text">“We can’t just sit here and do nothing!”</p>
     <p class="statement-source">Doug Jenkins, on <a href="${policyUrl('feed-the-starving-and-help-the-sick')}">Feed the Starving and Help the Sick</a></p>
+  </div>
+</section>
+
+<section class="section moments" id="moments" aria-labelledby="moments-h">
+  <div class="wrap">
+    <h2 id="moments-h" class="h2">Campaign Moments</h2>
+    ${momentsSlider()}
+  </div>
+</section>
+
+<section class="support" id="support" aria-labelledby="support-h">
+  <div class="wrap support-inner">
+    <div>
+      <h2 id="support-h" class="h2">${esc(site.support.heading)}</h2>
+      ${site.contributeUrl ? `<p class="support-text">${esc(site.support.text)}</p>` : `<p class="support-text">To contribute, contact the campaign at <a href="mailto:${site.email}">${site.email}</a> or <a href="tel:${site.phoneHref}">${site.phone}</a>.</p>`}
+    </div>
+    <a class="btn btn-red btn-lg" href="${contributeHref}"${site.contributeUrl ? ' rel="noopener"' : ''}>${esc(site.support.button)}</a>
+  </div>
+</section>
+
+<section class="section" id="get-in-touch" aria-labelledby="git-h">
+  <div class="wrap contact-grid">
+    <div>
+      <h2 id="git-h" class="h2">${esc(site.getInTouch)}</h2>
+      <h3 class="h3 contact-sub">Connect with Doug</h3>
+      ${contactDetails()}
+    </div>
+    ${contactForm('h', '<h3 class="h3">Send a message</h3>')}
   </div>
 </section>
 
@@ -429,37 +518,9 @@ ${pageHead({ trail, title: 'Get in Touch' })}
   <div class="wrap contact-grid">
     <div>
       <h2 class="h2">Connect with Doug</h2>
-      <dl class="contact">
-        <div><dt>Email</dt><dd><a href="mailto:${site.email}">${site.email}</a></dd></div>
-        <div><dt>Phone</dt><dd><a href="tel:${site.phoneHref}">${site.phone}</a></dd></div>
-        <div><dt>Hours</dt><dd>${site.hours}</dd></div>
-        <div><dt>Location</dt><dd>${site.hometown}</dd></div>
-      </dl>
+      ${contactDetails()}
     </div>
-    <form class="form" data-mailto-form data-subject="Message from dougjenkinsforpresident.com" novalidate>
-      <h2 class="h3">Send a message</h2>
-      <div class="field">
-        <label for="c-name">Name</label>
-        <input id="c-name" name="name" type="text" autocomplete="name">
-      </div>
-      <div class="field">
-        <label for="c-email">Email <span aria-hidden="true">*</span><span class="visually-hidden">(required)</span></label>
-        <input id="c-email" name="email" type="email" autocomplete="email" required aria-describedby="c-email-err">
-        <p class="field-error" id="c-email-err" hidden>Please enter a valid email address.</p>
-      </div>
-      <div class="field">
-        <label for="c-source">Where did you hear about us?</label>
-        <input id="c-source" name="source" type="text">
-      </div>
-      <div class="field">
-        <label for="c-message">Message <span aria-hidden="true">*</span><span class="visually-hidden">(required)</span></label>
-        <textarea id="c-message" name="message" rows="5" required aria-describedby="c-message-err"></textarea>
-        <p class="field-error" id="c-message-err" hidden>Please enter a message.</p>
-      </div>
-      <button class="btn btn-red" type="submit">Send</button>
-      <p class="form-status" role="status" aria-live="polite"></p>
-      <p class="form-help">This opens your email app with your message to ${site.email}.</p>
-    </form>
+    ${contactForm('c')}
   </div>
 </section>
 ${joinBand()}

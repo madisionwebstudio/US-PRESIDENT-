@@ -31,12 +31,21 @@ The original site had one content page (`/`). Its content now spans the pages be
 * Only spelling and punctuation were corrected: "Immagration", "fortunat3", "medical personal", "will creating", "Nixon di".
 * No new claims, statistics, taglines or section copy were added.
 
-**Removed**
+**Home page sections**
 
-* The empty "Campaign Moments" slider.
-* The "Contribute" button, which linked to `#`.
-* The cookie banner. The new site sets no cookies.
-* File attachments on the contact form.
+The home page keeps every section of the original, in the original order:
+
+* Our Vision
+* **Campaign Moments:** a photo slider.
+* **Support the Campaign:** a Contribute button, also in the header.
+* **Get in Touch:** a form plus "Connect with Doug" details.
+* **Join the Movement!:** an email sign-up.
+
+**Changed**
+
+* **Campaign Moments:** the original gallery showed only an empty placeholder ("1/5"), and its photos could not be recovered. The slider currently shows the two genuine images (the portrait and the flyer). Add more photos in `src/content.mjs` (`moments`).
+* **Contribute:** the original button linked to `#`, and no payment processor exists. Until `contributeUrl` is set in `src/content.mjs`, the button opens an email to the campaign, and the section shows the campaign's email and phone. Once a URL is set, the button links there and shows the original "Secure payment options" line.
+* **Removed:** the cookie banner (the new site sets no cookies) and file attachments on the contact form.
 
 ## 2. Pages proposed (not built)
 
@@ -81,6 +90,8 @@ The original site had one content page (`/`). Its content now spans the pages be
 ## 5. Configuration needed
 
 * **Hosting and domain:** deploy `public/` and repoint DNS. This needs the campaign's authorization.
+* **Contributions:** set up an FEC-compliant processor (for example ActBlue, WinRed or Anedot), then paste its URL into `contributeUrl`. Federal law requires contribution disclaimers and donor information collection.
+* **Campaign Moments photos:** send the 5 photos from the original gallery, or new event photos.
 * **Forms:** they currently open the visitor's email app. Connect a form or email-list service using `data-endpoint` (see README).
 * **Photos:** the only genuine photo is the small portrait on the flyer. A professional photo shoot is the top priority.
 * **Social links:** none are verified. Add official handles when available.

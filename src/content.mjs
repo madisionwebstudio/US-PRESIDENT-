@@ -18,6 +18,11 @@ export const site = {
   disclaimer: 'Paid for by Friends of Doug Jenkins', // [flyer]
   copyright: 'Doug Jenkins for President 2028 - All Rights Reserved.', // [site]
   join: { heading: 'Join the Movement!', text: 'Stand for Change. Join Today!' }, // [site]
+  getInTouch: 'Get in Touch', // [site]
+  support: { heading: 'Support the Campaign', text: 'Secure payment options', button: 'Contribute' }, // [site]
+  // Paste the campaign's contribution page URL here (e.g. an FEC-compliant processor).
+  // While empty, "Contribute" opens an email to the campaign instead.
+  contributeUrl: '',
   communityDedication: {
     heading: 'Community Dedication', // [site]
     text: 'Doug has committed years of service, tirelessly working to improve our community.', // [site]
@@ -29,6 +34,14 @@ export const bio = [
   'Doug, a father of 4, 10 grandkids, and 2 great-grandkids, ran for President in 2020 and 2024.',
   'A highly decorated Vietnam War veteran; a sergeant and life coach since 1969, he served 24 years in the US Army.',
   'He ran his own successful painting business for almost 40 years.',
+];
+
+// "Campaign Moments" [site] — the original gallery's photos could not be recovered
+// (it showed an empty placeholder). Add campaign photos here: put the files in
+// src/assets/img/ (a .jpg and a .webp with the same name) and add an entry.
+export const moments = [
+  { img: 'doug-jenkins-portrait', w: 386, h: 386, alt: 'Doug Jenkins wearing his veterans cap and glasses', caption: 'Doug Jenkins' },
+  { img: 'campaign-flyer-800', w: 800, h: 1067, alt: 'Doug Jenkins 2028 campaign flyer: Independent Write In, For President 2028, End the Nonsense', caption: 'Campaign flyer, 2028' },
 ];
 
 // "Our Vision" [site] — headings and text as published, in the original order.
