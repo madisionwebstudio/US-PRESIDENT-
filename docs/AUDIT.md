@@ -145,43 +145,36 @@ The flyer is the campaign's own printed material. It is the source of the biogra
 
 ---
 
-# Phase 2: Design direction
+# Phase 2: Design direction (revised)
 
-**Concept: "Plain-spoken, nationally serious."** Doug's message ("End the Nonsense") is direct. The design answers with the restraint of a quality American newspaper or a federal document: confident serif headlines, generous whitespace, a disciplined navy-and-gold palette, and one engraved-line motif borrowed from US banknote and bond engraving (a guilloche rosette). That motif gives an American reference without flags, stars or stripes.
+## Research: real presidential campaign sites
 
-**Palette**
+Reviewed: berniesanders.com, kamalaharris.com and donaldjtrump.com (live, Nov 2026), plus campaign-design write-ups (Cornershop Creative, Halls of Power 2024 sign-up review). Common patterns:
 
-| Token | Hex | Use |
-|---|---|---|
-| Navy | `#101D35` | Hero, feature bands and footer |
-| Presidential Blue | `#174A85` | Links, primary buttons on light backgrounds, icons |
-| White | `#FFFFFF` | Cards |
-| Warm Off-White | `#F6F5F1` | Page background |
-| Muted Gold | `#C5A15B` | Rules, numerals and accents on navy (6.9:1 contrast on navy) |
-| Deep Gold | `#7A5C22` | Gold *text* on light backgrounds (meets WCAG AA; Muted Gold does not on off-white) |
-| Ink | `#17202D` | Body text (15.6:1 on off-white) |
+* **Headlines:** short and declarative, ending in a period ("Not me. Us.").
+* **Navigation:** few, plain labels ("Meet Bernie", "Issues", "Contact") with one bold action button.
+* **Email sign-up:** in the hero, then repeated lower on the page (Bernie repeats the form three times).
+* **Brand:** solid campaign colours and a heavy sans-serif. No ornaments or decorative stats.
+* **Issue pages:** the candidate's own words, in plain lists.
+* **Footer:** boxed, all-caps "PAID FOR BY …".
 
-**Typography**
+## Applied to Doug
 
-* **Source Serif 4** (variable, with optical sizing) for headlines and pull quotes. It reads as editorial and authoritative.
-* **Public Sans** (variable) for navigation, body text and buttons. It was developed from the US Web Design System, which suits a federal campaign.
-* Both fonts are self-hosted WOFF2 files under the SIL Open Font License.
+The first draft used an editorial look: serif type, gold rules, Roman numerals, a "plan at a glance" grid. It read as a generic template and has been replaced.
 
-**Wordmark**
+**Brand from Doug's own flyer**
+* Bold blue capitals for his name, with red for "Independent Write In".
+* The blue swoosh at the foot of the flyer is redrawn as the site's only graphic mark.
+* **Colours:** blue `#1B3A8C`, red `#C1272D`, navy `#0C1A44`, white and a light grey.
+* **Type:** one typeface, Archivo (variable width), heavy and wide for headlines, regular for body text.
 
-* "DOUG" in tracked sans capitals sits above "JENKINS" in serif capitals, with a gold rule and "2028".
-* The monogram, used for the favicon and social images, is a serif "DJ" in a gold-ringed navy roundel.
+**Wording**
+* Only Doug's own words: "End the Nonsense", "Join the Movement! Stand for Change. Join Today!", "Our Vision", "Community Dedication", "Get in Touch", "Connect with Doug", and the original issue headings.
+* No invented taglines or section copy.
 
-**Photography**
-
-* Only one genuine photograph of Doug exists: the portrait printed on the flyer. It is used as provided, cropped but not retouched or AI-enhanced, framed by an offset gold hairline.
-* No stock or AI imagery of the candidate is used.
-* A professional portrait session is the top recommendation in the final report.
-
-**Components**
-
-* **Policy cards:** Roman-numeral index, line icon, title, one-line summary and an arrow link.
-* **Proposal blocks:** numbered statements.
-* **"As stated by the campaign" figure panels:** large figures that keep the campaign's own numbers clearly attributed.
-* **Pull quotes:** serif italic.
-* **Breadcrumbs, related-policy rail and CTA band.**
+**Layout**
+* **Hero:** "End the Nonsense." with an email sign-up beside his photo.
+* **Meet Doug:** the flyer text next to the flyer itself.
+* **Our Vision:** a grid of his 10 issues.
+* **Statement:** one of his statements in a red band.
+* **Join the Movement:** a sign-up band, repeated on every page.

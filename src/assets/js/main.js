@@ -25,7 +25,7 @@
       if (e.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') { setOpen(false); toggle.focus(); }
     });
     panel.addEventListener('click', (e) => { if (e.target.closest('a')) setOpen(false); });
-    matchMedia('(min-width: 1080px)').addEventListener('change', (e) => { if (e.matches) setOpen(false); });
+    matchMedia('(min-width: 960px)').addEventListener('change', (e) => { if (e.matches) setOpen(false); });
   }
 
   // Close desktop mega menu on Escape

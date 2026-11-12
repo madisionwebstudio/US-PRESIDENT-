@@ -35,7 +35,7 @@ Node 18 or later is required. The build has no npm dependencies.
 
 ## Editing content
 
-* All text lives in `src/content.mjs`. After editing it, run `npm run build`.
+* All text lives in `src/content.mjs`, in the campaign's own wording. After editing it, run `npm run build`.
 * **Campaign news:** add entries to the `news` array. The build then generates `/news/` and an article page for each entry (with Article schema), and adds a "Latest updates" section to the home page. The array is empty because the campaign has published no updates.
 * **Forms:** both forms open the visitor's email app, addressed to the campaign. To use a form service instead (for example Formspree or Netlify Forms), add `data-endpoint="https://…"` to the `<form>` elements in `src/build.mjs`.
 

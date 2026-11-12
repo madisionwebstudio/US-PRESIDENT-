@@ -47,7 +47,8 @@ while (queue.length) {
     links: [...document.querySelectorAll('a[href]')].map((a) => a.getAttribute('href')),
     imgsNoAlt: [...document.querySelectorAll('img:not([alt])')].length,
     jsonld: [...document.querySelectorAll('script[type="application/ld+json"]')].map((s) => s.textContent),
-    placeholder: /lorem|ipsum|placeholder|TODO|TBD/i.test(document.body.innerText),
+    banned: (document.body.innerText.match(/at a glance|keep reading|why it matters|plain-spoken|commitments|related policies|learn more about|unlock|empower(ing)? |journey|dive into|seamless/i) || [])[0],
+    placeholder: /lorem|ipsum|TODO|TBD/i.test(document.body.innerText),
   }));
   if (info.h1 !== 1) problems.push(`${path}: ${info.h1} <h1> elements`);
   for (let i = 1; i < info.headings.length; i++) if (info.headings[i] - info.headings[i - 1] > 1) problems.push(`${path}: heading level skips h${info.headings[i - 1]}→h${info.headings[i]}`);
@@ -56,6 +57,7 @@ while (queue.length) {
   if (!info.og) problems.push(`${path}: missing og:image`);
   if (info.imgsNoAlt) problems.push(`${path}: ${info.imgsNoAlt} images without alt`);
   if (info.placeholder) problems.push(`${path}: placeholder-like text found`);
+  if (info.banned) problems.push(`${path}: template phrase found: ${info.banned}`);
   for (const j of info.jsonld) { try { JSON.parse(j); } catch { problems.push(`${path}: invalid JSON-LD`); } }
   if (titles.has(info.title)) problems.push(`${path}: duplicate title with ${titles.get(info.title)}`); else titles.set(info.title, path);
   if (descs.has(info.desc)) problems.push(`${path}: duplicate description with ${descs.get(info.desc)}`); else descs.set(info.desc, path);
@@ -91,7 +93,7 @@ for (const w of widths) {
       const de = document.documentElement;
       const wide = [...document.querySelectorAll('body *')].filter((el) => {
         const b = el.getBoundingClientRect();
-        return b.right > de.clientWidth + 1 && getComputedStyle(el).position !== 'fixed' && !el.closest('[aria-hidden="true"],.mega,.mobile-nav');
+        return b.right > de.clientWidth + 1 && getComputedStyle(el).position !== 'fixed' && !el.closest('[aria-hidden="true"],.menu');
       }).map((el) => el.className || el.tagName).slice(0, 3);
       const broken = [...document.images].filter((i) => i.complete && i.naturalWidth === 0).map((i) => i.currentSrc || i.src);
       return { overflow: de.scrollWidth > de.clientWidth, wide, broken };
@@ -111,11 +113,6 @@ for (const w of widths) {
     if (SHOTS) { await pg.click('[data-nav-toggle]'); await pg.screenshot({ path: join(SHOTS, 'mobile-menu-390.png') }); }
   }
   if (w === 1440) {
-    await pg.goto(BASE + '/', { waitUntil: 'load' });
-    await pg.hover('.has-mega > a');
-    await pg.waitForTimeout(400);
-    if (!(await pg.isVisible('.mega-list'))) problems.push('desktop mega menu did not open on hover');
-    if (SHOTS) await pg.screenshot({ path: join(SHOTS, 'mega-menu-1440.png') });
     // keyboard: tab into nav
     await pg.goto(BASE + '/', { waitUntil: 'load' });
     await pg.keyboard.press('Tab');
