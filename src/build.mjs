@@ -11,7 +11,7 @@ import { icon } from './icons.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const SRC = join(ROOT, 'src');
-const OUT = join(ROOT, 'public');
+const OUT = join(ROOT, 'public_html');
 const BUILD_DATE = new Date().toISOString().slice(0, 10);
 const YEAR = new Date().getFullYear();
 

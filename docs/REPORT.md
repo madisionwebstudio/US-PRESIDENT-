@@ -105,7 +105,7 @@ The vehicle also advertises "Jobs & coupons available in Washington DC, text 608
 
 ## 5. Configuration needed
 
-* **Hosting and domain:** deploy `public/` and repoint DNS. This needs the campaign's authorization.
+* **Hosting and domain:** deploy `public_html/` (Netlify from `main`, or upload to hosting) and repoint DNS. This needs the campaign's authorization.
 * **Contributions: unknown how the campaign currently accepts them.** Ask Doug how he receives contributions today (check, cash, a payment app, or an online processor). If he already uses an online page, paste its URL into `contributeUrl`. If not, set up an FEC-compliant processor (for example ActBlue, WinRed or Anedot), then paste its URL into `contributeUrl`. Federal law requires contribution disclaimers and donor information collection.
 * **Campaign Moments photos:** add new event photos in `src/content.mjs` as they become available.
 * **Forms:** they currently open the visitor's email app. Connect a form or email-list service using `data-endpoint` (see README).

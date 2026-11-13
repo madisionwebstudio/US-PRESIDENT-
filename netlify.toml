@@ -1,0 +1,17 @@
+# Netlify: deploys the ready-built site in public_html/ from the main branch.
+# The same public_html/ folder is what gets uploaded to the real domain's hosting.
+[build]
+  publish = "public_html"
+  command = ""
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    X-Frame-Options = "SAMEORIGIN"

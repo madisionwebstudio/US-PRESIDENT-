@@ -4,7 +4,7 @@ import { readFile, stat } from 'node:fs/promises';
 import { join, extname, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..', 'public');
+const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..', 'public_html');
 const PORT = Number(process.argv[2] || process.env.PORT || 4173);
 const types = { '.html': 'text/html; charset=utf-8', '.css': 'text/css', '.js': 'text/javascript', '.svg': 'image/svg+xml', '.png': 'image/png', '.jpg': 'image/jpeg', '.webp': 'image/webp', '.woff2': 'font/woff2', '.xml': 'application/xml', '.txt': 'text/plain', '.webmanifest': 'application/manifest+json' };
 
@@ -23,4 +23,4 @@ createServer(async (req, res) => {
     res.writeHead(404, { 'Content-Type': types['.html'] });
     res.end(await readFile(join(ROOT, '404.html')));
   }
-}).listen(PORT, () => console.log(`Serving public/ at http://localhost:${PORT}`));
+}).listen(PORT, () => console.log(`Serving public_html/ at http://localhost:${PORT}`));

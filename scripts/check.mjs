@@ -1,5 +1,5 @@
 // Automated QA: node scripts/check.mjs [--shots dir]
-// Starts a local server on public/, crawls every page at 390 / 768 / 1440 px and checks:
+// Starts a local server on public_html/, crawls every page at 390 / 768 / 1440 px and checks:
 // horizontal overflow, broken images, broken internal links, one <h1>, heading order,
 // unique <title>/<meta description>, canonical, JSON-LD validity, console errors, alt text.
 import { spawn } from 'node:child_process';
