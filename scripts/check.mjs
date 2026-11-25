@@ -64,7 +64,7 @@ while (queue.length) {
   if (info.og) linkTargets.add(new URL(info.og).pathname);
   for (const href of info.links) {
     if (/^(mailto:|tel:)/.test(href)) continue;
-    if (/^https?:/.test(href)) { problems.push(`${path}: external link ${href}`); continue; }
+    if (/^https?:/.test(href)) { if (href.startsWith('https://madisonwebstudio.com/')) continue; problems.push(`${path}: external link ${href}`); continue; }
     const u = new URL(href, BASE + path);
     linkTargets.add(u.pathname);
     if (u.hash) linkTargets.add(u.pathname + u.hash);

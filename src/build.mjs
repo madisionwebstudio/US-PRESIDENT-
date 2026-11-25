@@ -143,6 +143,7 @@ function footer() {
     <div class="footer-bottom">
       <p class="paid-for">${esc(site.disclaimer)}</p>
       <p>Copyright © ${YEAR} ${esc(site.copyright)}</p>
+      <p class="dev-credit">Developed by <a href="${site.developer.url}" rel="noopener">${esc(site.developer.name)}</a></p>
     </div>
   </div>
 </footer>`;
@@ -355,7 +356,7 @@ pages.push({
       </div>
     </div>
     <div class="hero-photo">
-      ${jeepRear(true)}
+      ${portrait(true)}
     </div>
   </div>
 </section>
@@ -369,7 +370,7 @@ pages.push({
       <p>${esc(site.communityDedication.text)}</p>
       <a class="btn btn-blue" href="/meet-doug/">Meet Doug</a>
     </div>
-    <div class="meet-photo">${portrait()}</div>
+    <div class="meet-photo">${jeepRear()}</div>
   </div>
 </section>
 

@@ -34,6 +34,7 @@ export const site = {
     heading: 'Community Dedication', // [site]
     text: 'Doug has committed years of service, tirelessly working to improve our community.', // [site]
   },
+  developer: { name: 'Madison Web Studio', url: 'https://madisonwebstudio.com/madison-web-design' },
   leadQuote: 'I’ll lead America like if Jesus was standing next to me.', // [chat]
 };
 
