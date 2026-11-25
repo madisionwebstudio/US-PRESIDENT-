@@ -50,6 +50,7 @@ body{width:${size}px;height:${size}px;display:grid;place-items:center;background
 const jobs = [
   { out: 'src/assets/og/home.png', html: card({ kicker: 'Independent Write-In for President 2028', title: 'End the Nonsense.', photo: true }) },
   { out: 'src/assets/og/meet-doug.png', html: card({ kicker: 'Meet Doug', title: 'Vietnam War veteran. 24 years in the US Army.', photo: true }) },
+  { out: 'src/assets/og/faith-and-values.png', html: card({ kicker: 'Faith & Values', title: 'A Jesus follower since 1955', photo: false }) },
   { out: 'src/assets/og/our-vision.png', html: card({ kicker: 'Independent Write-In for President 2028', title: 'Our Vision' }) },
   { out: 'src/assets/og/contact.png', html: card({ kicker: 'Connect with Doug', title: 'Get in Touch' }) },
   ...policies.map((p) => ({ out: `src/assets/og/${p.slug}.png`, html: card({ kicker: 'Our Vision', title: p.title }) })),

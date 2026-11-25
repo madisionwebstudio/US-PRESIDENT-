@@ -6,7 +6,7 @@ import { mkdir, writeFile, readFile, cp, rm } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { site, bio, policies, news, moments } from './content.mjs';
+import { site, bio, timeline, faith, policies, news, moments } from './content.mjs';
 import { icon } from './icons.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
@@ -36,6 +36,7 @@ const swoosh = (cls = '') =>
 // ---------------------------------------------------------------------------
 const navItems = [
   { href: '/meet-doug/', label: 'Meet Doug' },
+  { href: '/faith-and-values/', label: 'Faith & Values' },
   { href: VISION, label: 'Our Vision' },
   ...(news.length ? [{ href: '/news/', label: 'News' }] : []),
   { href: '/contact/', label: 'Contact' },
@@ -234,6 +235,18 @@ const portrait = (eager = false) => `
     <img src="/assets/img/doug-jenkins-portrait.jpg" alt="Doug Jenkins wearing his veterans cap and glasses" width="386" height="386" ${eager ? 'fetchpriority="high"' : 'loading="lazy"'} decoding="async">
   </picture>`;
 
+const photo = ({ name, w, h, alt, eager = false, cls = 'photo' }) => `
+  <picture class="${cls}">
+    <source type="image/webp" srcset="/assets/img/${name}.webp">
+    <img src="/assets/img/${name}.jpg" alt="${esc(alt)}" width="${w}" height="${h}" ${eager ? 'fetchpriority="high"' : 'loading="lazy"'} decoding="async">
+  </picture>`;
+const jeepRear = (eager) => photo({ name: 'jeep-rear', w: 900, h: 960, eager, alt: 'Doug Jenkins’ red campaign Jeep with Wisconsin plate DJ4PREZ, lettered "Doug Jenkins for President 2028, Independent Write In, End the Nonsense / Let’s Do the Right Thing"' });
+const jeepSide = () => photo({ name: 'jeep-side', w: 1000, h: 878, alt: 'Side of Doug Jenkins’ campaign Jeep with signs "Doug Jenkins for President 2028", "Stop the Nonsense", "Repentance is the golden key to eternity" and "God is good all the time"' });
+const timelineList = () => `
+  <ol class="timeline">
+    ${timeline.map((t) => `<li><span class="tl-year">${esc(t.year)}</span><span class="tl-text">${esc(t.text)}</span></li>`).join('')}
+  </ol>`;
+
 const flyer = () => `
   <figure class="flyer">
     <picture>
@@ -342,7 +355,7 @@ pages.push({
       </div>
     </div>
     <div class="hero-photo">
-      ${portrait(true)}
+      ${jeepRear(true)}
     </div>
   </div>
 </section>
@@ -356,7 +369,21 @@ pages.push({
       <p>${esc(site.communityDedication.text)}</p>
       <a class="btn btn-blue" href="/meet-doug/">Meet Doug</a>
     </div>
-    ${flyer()}
+    <div class="meet-photo">${portrait()}</div>
+  </div>
+</section>
+
+<section class="section faith-teaser" aria-labelledby="faith-h">
+  <div class="wrap faith-teaser-grid">
+    <div>
+      <h2 id="faith-h" class="h2">Faith &amp; Values</h2>
+      <blockquote class="big-quote"><p>“${esc(site.leadQuote)}”</p><footer>Doug Jenkins</footer></blockquote>
+      <p class="lead">${esc(faith.intro[0])}</p>
+      <a class="btn btn-blue" href="/faith-and-values/">Faith &amp; Values</a>
+    </div>
+    <ul class="value-chips" aria-label="Doug’s values">
+      ${faith.values.slice(0, 4).map((v) => `<li><strong>${esc(v.title)}</strong><span>${esc(v.text)}</span></li>`).join('')}
+    </ul>
   </div>
 </section>
 
@@ -432,9 +459,82 @@ ${pageHead({ trail, title: 'Meet Doug', sub: `<p class="page-sub">${esc(site.sta
       ${bio.map((p, i) => `<p${i === 0 ? ' class="lead"' : ''}>${esc(p)}</p>`).join('')}
       <h2 class="h3">${esc(site.communityDedication.heading)}</h2>
       <p>${esc(site.communityDedication.text)}</p>
-      <p>Read where Doug stands in <a href="${VISION}">Our Vision</a>, or <a href="/contact/">get in touch</a>.</p>
+      <h2 class="h3">Faith</h2>
+      <p>${esc(faith.intro[0])}</p>
+      <blockquote class="inline-quote"><p>“${esc(site.leadQuote)}”</p></blockquote>
+      <p><a href="/faith-and-values/">Read about Doug’s faith and values</a>, see where he stands in <a href="${VISION}">Our Vision</a>, or <a href="/contact/">get in touch</a>.</p>
     </div>
     ${flyer()}
+  </div>
+</section>
+<section class="section timeline-section" aria-labelledby="tl-h">
+  <div class="wrap tl-grid">
+    <div>
+      <h2 id="tl-h" class="h2">Doug’s Story</h2>
+      ${timelineList()}
+    </div>
+    <figure class="tl-photo">${jeepSide()}<figcaption>Doug’s campaign Jeep: “Stop the Nonsense.”</figcaption></figure>
+  </div>
+</section>
+${joinBand()}
+`,
+    }),
+  });
+}
+
+// FAITH & VALUES --------------------------------------------------------------
+{
+  const trail = [{ name: 'Home', path: '/' }, { name: 'Faith & Values', path: '/faith-and-values/' }];
+  pages.push({
+    path: '/faith-and-values/',
+    html: layout({
+      path: '/faith-and-values/',
+      title: 'Faith & Values | Doug Jenkins for President 2028',
+      description: 'Doug Jenkins has been a follower of Jesus since 1955. Read his values, his message "Be Aware", "I Am a Soldier", and the people who inspire him.',
+      ogImage: 'faith-and-values',
+      schema: [breadcrumbSchema(trail)],
+      body: `
+${pageHead({ trail, title: 'Faith &amp; Values', sub: `<p class="page-sub">A Jesus follower since 1955</p>` })}
+<section class="section">
+  <div class="wrap faith-grid">
+    <div class="prose">
+      <blockquote class="big-quote"><p>“${esc(site.leadQuote)}”</p><footer>Doug Jenkins</footer></blockquote>
+      ${faith.intro.map((p) => `<p class="lead">${esc(p)}</p>`).join('')}
+    </div>
+    <figure class="books">${photo({ name: 'doug-books', w: 900, h: 758, alt: 'Doug’s Holy Bible, rosary beads, The 100 Most Important Bible Verses Every Leader Must Know, Leadership Promises for Every Day by John C. Maxwell, and Mother Teresa: Meditations from a Simple Path' })}<figcaption>Doug’s Bible, rosary and devotional books.</figcaption></figure>
+  </div>
+</section>
+
+<section class="section vision" aria-labelledby="values-h">
+  <div class="wrap">
+    <h2 id="values-h" class="h2">What Doug Believes</h2>
+    <ul class="values">
+      ${faith.values.map((v) => `<li><h3 class="h3">${esc(v.title)}</h3><p>${esc(v.text)}</p></li>`).join('')}
+    </ul>
+  </div>
+</section>
+
+<section class="statement" aria-labelledby="aware-h">
+  <div class="wrap">
+    <h2 id="aware-h" class="statement-text">Be Aware</h2>
+    <ul class="aware">${faith.beAware.map((x) => `<li>${esc(x)}</li>`).join('')}</ul>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="soldier-h">
+  <div class="wrap soldier">
+    <h2 id="soldier-h" class="h2">${esc(faith.soldier.title)}</h2>
+    <div class="prose soldier-text">
+      ${faith.soldier.paragraphs.map((p) => `<p>${esc(p)}</p>`).join('')}
+      <p class="credit">${esc(faith.soldier.credit)}</p>
+    </div>
+  </div>
+</section>
+
+<section class="section vision" aria-labelledby="insp-h">
+  <div class="wrap">
+    <h2 id="insp-h" class="h2">People Doug Has Studied</h2>
+    <ul class="people">${faith.inspirations.map((x) => `<li>${esc(x)}</li>`).join('')}</ul>
   </div>
 </section>
 ${joinBand()}

@@ -112,3 +112,42 @@ The vehicle also advertises "Jobs & coupons available in Washington DC, text 608
 * **Photos:** the only genuine photo is the small portrait on the flyer. A professional photo shoot is the top priority.
 * **Social links:** none are verified. Add official handles when available.
 * **After launch:** run PageSpeed Insights and submit the sitemap in Search Console.
+
+---
+
+## Update, 25 November 2026: rebuilt from Doug's shared materials
+
+**Policies now use Doug's latest printed literature** (approved by the studio):
+* **Immigration:** now the printed version (secure the southern border; bring troops home from South Korea, Germany and the Middle East).
+* **Budget:** adds "in the first year".
+* **Homelessness:** "family service agent".
+* **Feed the Starving:** "go to these countries with farmers, engineers and medical personnel".
+* **Stop the Killing:** adds "Stop making gun powder" and "2 billion people suffer from the effect of war".
+* **Climate:** now "5 million … contaminated water, 7 million suffer due to unhealthy air", plus "clean up what we polluted".
+* **Addictions:** the title adds "Individualism", plus "removing the source" and "ruins a lot of families".
+
+**New and expanded pages**
+* **New `/faith-and-values/`:**
+  * "A Jesus follower since 1955";
+  * the quote "I'll lead America like if Jesus was standing next to me";
+  * six values in Doug's words;
+  * "Be Aware";
+  * "I Am a Soldier", credited as printed ("Original author: B.J. Morbilzer. Revised and edited by Douglas Jenkins.");
+  * "People Doug has studied";
+  * a photo of his Bible and books.
+* **Expanded Meet Doug:** a faith paragraph and a "Doug's Story" timeline that uses only years Doug stated.
+* **Home page:** the campaign Jeep (DJ4PREZ) in the hero, the portrait in Meet Doug, a new Faith & Values section, and both new Jeep photos in Campaign Moments.
+
+**Navigation**
+* Faith & Values was added to the menu.
+* The desktop menu now shows from 1200 px; narrower screens use the mobile menu and sticky bar.
+
+**Deliberately not published (needs Doug's explicit decision)**
+* The "Like Noah" page: "I'm just a messenger, a prophet", "God told me…", and "Jesus will return on or before May 14, 2028".
+* The "You won't believe" statistics that are not part of his policy text: 300 million homeless worldwide, 3,500 billionaires, "99 out of 100", $30,000 = top 1%, 74% overweight, and 25,000 daily starvation deaths.
+* Any statement attributed to Pope Francis.
+
+**Still to confirm**
+* The statistics listed in the 20 November audit, now including 35,000 troops in South Korea (about 28,500 actually serve there) and the new climate wording.
+* The original authorship of "I Am a Soldier". The text circulates widely, so confirm the credit is correct before relying on it.
+* Original digital files of the Jeep photos and the portrait. The current ones are phone photos of printouts.
